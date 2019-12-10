@@ -1,0 +1,43 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: item-service
+    
+  datasource:
+    url: jdbc:mysql:///hm49
+    data-username: root
+    data-password: 123123
+  rabbitmq:
+    virtual-host: /leyou
+    host: 192.168.1.106
+    username: leyou
+    password: leyou
+    template:
+      retry:
+        enabled: true
+        initial-interval: 10000ms
+        max-interval: 300000ms
+      exchange: ly.item.exchange
+    publisher-confirms: true    #消息发送到交换机确认机制,是否确认回调
+#  - template：有关`AmqpTemplate`的配置
+#    - retry：失败重试
+#    - enabled：开启失败重试
+#    - initial-interval：第一次重试的间隔时长
+#    - max-interval：最长重试间隔，超过这个间隔将不再重试
+#    - multiplier：下次重试间隔的倍数，此处是2即下次重试间隔是上次的2倍
+#    - exchange：缺省的交换机名称，此处配置后，发送消息如果不指定交换机就会使用这个
+#  - publisher-confirms：生产者确认机制，确保消息会正确发送，如果发送失败会有错误回执，从而触发重试
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+  instance:
+    lease-expiration-duration-in-seconds: 15
+    lease-renewal-interval-in-seconds: 5
+
+mybatis:
+  type-aliases-package: com.leyou.item.pojo
+

@@ -1,0 +1,35 @@
+server:
+  port: 8084
+spring:
+  application:
+    name: goods-web
+  thymeleaf:
+    cache: false
+  data:
+    elasticsearch:
+      repositories:
+        enabled: true
+      cluster-nodes: 192.168.1.106:9300
+
+  rabbitmq:
+    virtual-host: /leyou
+    host: 192.168.1.106
+    password: leyou
+    username: leyou
+    publisher-confirms: true
+    template:
+      exchange: ly.item.exchange
+eureka:
+  client:
+    registry-fetch-interval-seconds: 5
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+  instance:
+    lease-expiration-duration-in-seconds: 15
+    lease-renewal-interval-in-seconds: 5
+
+Leyou:
+  path:
+    ItemPagePath: E:\1HtmlPage\LeyouHtml\
+
+
